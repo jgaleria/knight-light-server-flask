@@ -1,33 +1,26 @@
 from flask import Flask
-# from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
-# db = SQLAlchemy(app)
-
-# class Status(db.Model):
-#     status = db.Column(db.String(20), primary_key=True, nullable=False)
-
-#     def __repr__(self):
-#         return '<Status %r> % self.id'
 
 #Creating Data Schema
-# status = ["ON", "OFF"]
+status = ["ON", "OFF"]
 
 #Return current status of signal
-@app.route("/")
+@app.route('/', methods=['GET'])
 def index():
     return "This is the status of the webpage: "
 
 #Turn status on
-@app.route("/activate", methods = ['PUT'])
+@app.route('/activate', methods = ['POST'])
 def activate():
-    return "The status was just switched to ON"
+    status = ["ON"]
+    return "The status was just switched to {status}"
 
 #Turn status off
-@app.route("/deactivate", methods = ['PUT'])
+@app.route('/deactivate', methods = ['POST'])
 def deactivate():
-    return "The status was just switched to OFF"
+    status = ["OFF"]
+    return "The status was just switched to {status}"
 
 if __name__ == "__main__":
     app.run(debug=True)
