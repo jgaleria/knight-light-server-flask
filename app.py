@@ -1,5 +1,6 @@
 from flask import Flask
 
+#Creating Flask App
 app = Flask(__name__)
 
 #Creating Data Schema
@@ -14,13 +15,13 @@ def index():
 @app.route('/activate', methods = ['POST'])
 def activate():
     status = ["ON"]
-    return "The status was just switched to {status}"
+    return "The status was just switched to " + status
 
 #Turn status off
 @app.route('/deactivate', methods = ['POST'])
 def deactivate():
     status = ["OFF"]
-    return "The status was just switched to {status}"
+    return "The status was just switched to " + status
 
 if __name__ == "__main__":
     app.run(debug=True)
