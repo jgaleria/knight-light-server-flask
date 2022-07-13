@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 
 #Creating Flask App
 app = Flask(__name__)
@@ -9,19 +9,19 @@ status = "OFF"
 #Return current status of signal
 @app.route('/', methods=['GET'])
 def index():
-    return f"This is the status of the webpage: {status}"
+    return jsonify(status)
 
 #Turn status on
 @app.route('/activate', methods = ['POST'])
 def activate():
     status = "ON"
-    return f"The status was just switched to {status}"
+    return jsonify(status)
 
 #Turn status off
 @app.route('/deactivate', methods = ['POST'])
 def deactivate():
     status = "OFF"
-    return f"The status was just switched to {status}" 
+    return jsonify(status)
 
 
 if __name__ == "__main__":
