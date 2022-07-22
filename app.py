@@ -4,7 +4,7 @@ from flask import Flask, jsonify
 app = Flask(__name__)
 
 #Creating Data Schema
-status = "OFF"
+status = { "status": "OFF" }
 
 #Return current status of signal
 @app.route('/', methods=['GET'])
@@ -14,13 +14,13 @@ def index():
 #Turn status on
 @app.route('/activate', methods = ['POST'])
 def activate():
-    status = "ON"
+    status["status"]= "ON"
     return jsonify(status)
 
 #Turn status off
 @app.route('/deactivate', methods = ['POST'])
 def deactivate():
-    status = "OFF"
+    status["status"]= "OFF"
     return jsonify(status)
 
 
