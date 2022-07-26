@@ -4,29 +4,26 @@ from flask import Flask, jsonify
 app = Flask(__name__)
 
 #Creating Data Schema
-status = { "status": "OFF" }
-
-#Server
-server = { "server": "python flask" }
+status = { "status": "OFF", "server": "python flask" }
 
 #Return current status of signal
 @app.route('/', methods=['GET'])
 def index():
-    return jsonify(status, server)
+    return jsonify(status)
 
 #Turn status on
 @app.route('/activate', methods = ['POST'])
 def activate():
     status["status"]= "ON"
-    return jsonify(status, server)
+    return jsonify(status)
 
 #Turn status off
 @app.route('/deactivate', methods = ['POST'])
 def deactivate():
     status["status"]= "OFF"
-    return jsonify(status, server)
+    return jsonify(status)
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5000)
 
